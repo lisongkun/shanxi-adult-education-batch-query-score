@@ -22,13 +22,13 @@ namespace ShanxiAdultEducationBatchQueryScore
             {
                 case 0:
                     var frmMain = new FrmMain();
-                    frmMain.ShowDialog();
+                    frmMain.Show();
                     Hide();
                     frmMain.FormClosed += (o, args) => Close();
                     break;
                 case 1:
                     var frmAllInfo = new FrmAllInfo();
-                    frmAllInfo.ShowDialog();
+                    frmAllInfo.Show();
                     Hide();
                     frmAllInfo.FormClosed += (o, args) => Close();
                     break;
@@ -39,5 +39,10 @@ namespace ShanxiAdultEducationBatchQueryScore
         }
 
         #endregion
+
+        private void FrmAccess_Load(object sender, System.EventArgs e)
+        {
+            CmbForm.SelectedIndex = 1;
+        }
     }
 }

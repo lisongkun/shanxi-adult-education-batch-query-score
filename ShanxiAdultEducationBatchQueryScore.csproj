@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTableUtil.cs" />
     <Compile Include="FrmAccess.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,10 +97,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetContext.cs" />
     <Compile Include="NPOIHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vo\LoginSuccessVo.cs" />
+    <Compile Include="WebService.cs" />
     <EmbeddedResource Include="FrmAccess.resx">
       <DependentUpon>FrmAccess.cs</DependentUpon>
     </EmbeddedResource>

@@ -85,6 +85,7 @@
             this.Name = "FrmAccess";
             this.Text = "FrmAccess";
             this.ZoomScaleRect = new System.Drawing.Rectangle(19, 19, 800, 450);
+            this.Load += new System.EventHandler(this.FrmAccess_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
