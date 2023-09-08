@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
+using Sunny.UI;
 
 namespace ShanxiAdultEducationBatchQueryScore
 {
@@ -226,9 +229,20 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["考试所在市"] = matches[0].Groups[1].Value;
             // 志愿信息
-            regex = new Regex("<tr>\r\n\t\t\t<td align=\"center\">(.*?)</td>\r\n\t\t\t<td align=\"center\">(.*?)</td>\r\n\t\t\t<td align=\"center\">(.*?)</td>\r\n\t\t\t<td align=\"center\">(.*?)</td>\r\n\t\t\t<td align=\"center\">(.*?)</td>\r\n\t\t</tr>\r\n");
-            matches = regex.Matches(response);
-            dic["志愿信息"] = matches[0].Groups[1].Value + "-" + matches[0].Groups[2].Value + "-" + matches[0].Groups[3].Value + "-" + matches[0].Groups[4].Value + "-" + matches[0].Groups[5].Value;
+            // regex = new Regex("<td align=\"center\">专业名称</td>\r\n\t\t</tr>\r\n\t\t \r\n\t\t<tr>(.*?)</tr>\r\n\t\t\r\n\t\t  \r\n\t\t\r\n\t</table>",RegexOptions.Multiline);
+            // matches = regex.Matches(response);
+            var doc = new HtmlDocument();
+            doc.LoadHtml(response);
+            var result = doc.DocumentNode.SelectNodes("//table[2]/tr");
+            dic["志愿信息"] = "";
+            if (result.Count > 1)
+            {
+                dic["志愿信息"] = string.Join("  |  ", result.Skip(1)
+                    .Select(i => i.SelectNodes("td").Select(j => j.InnerText))
+                    .Select(i => string.Join("-", i)).ToList());
+
+
+            }
             // 审核状态
             regex = new Regex("<td align=\"center\">审核状态：</td>\r\n\t<td> \r\n\t <span style=\"font-size: 20px;color: red;\"> (.*?) </span>");
             matches = regex.Matches(response);

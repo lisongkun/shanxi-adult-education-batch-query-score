@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Text;
 using System.Windows.Forms;
 using Sunny.UI;
 
@@ -17,8 +15,7 @@ namespace ShanxiAdultEducationBatchQueryScore
 
         private void FrmAllInfo_Load(object sender, EventArgs e)
         {
-            tb_account.Text = $"142601199305032111 aaa111111{Environment.NewLine}142602199510221014 aaa111111";
-            
+            tb_account.Text = $"142601198906107639 aaa111111{Environment.NewLine}";
         }
 
         /// <summary>
