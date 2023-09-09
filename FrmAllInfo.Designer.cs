@@ -28,20 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_records = new Sunny.UI.UIDataGridView();
-            this.lbl_to_website = new Sunny.UI.UILinkLabel();
-            this.btn_export_data = new Sunny.UI.UIButton();
-            this.btn_import = new Sunny.UI.UIButton();
-            this.tb_account = new Sunny.UI.UITextBox();
             this.dgv_column_index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ch_column_account = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ch_column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,24 +70,30 @@
             this.dgv_column_verify3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_column_verify4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_column_status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_to_website = new Sunny.UI.UILinkLabel();
+            this.btn_export_data = new Sunny.UI.UIButton();
+            this.btn_import = new Sunny.UI.UIButton();
+            this.tb_account = new Sunny.UI.UITextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_records)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_records
             // 
+            this.dgv_records.AllowUserToAddRows = false;
+            this.dgv_records.AllowUserToDeleteRows = false;
             this.dgv_records.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.dgv_records.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.dgv_records.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_records.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.dgv_records.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_records.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_records.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_records.ColumnHeadersHeight = 32;
             this.dgv_records.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_records.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -127,14 +129,14 @@
             this.dgv_column_verify3,
             this.dgv_column_verify4,
             this.dgv_column_status});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_records.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_records.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_records.EnableHeadersVisualStyles = false;
             this.dgv_records.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgv_records.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
@@ -142,22 +144,22 @@
             this.dgv_records.MultiSelect = false;
             this.dgv_records.Name = "dgv_records";
             this.dgv_records.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_records.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_records.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_records.RowHeadersVisible = false;
             this.dgv_records.RowHeadersWidth = 51;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dgv_records.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dgv_records.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_records.RowTemplate.Height = 27;
             this.dgv_records.ScrollBarRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dgv_records.SelectedIndex = -1;
@@ -165,65 +167,10 @@
             this.dgv_records.Size = new System.Drawing.Size(1318, 279);
             this.dgv_records.TabIndex = 6;
             // 
-            // lbl_to_website
-            // 
-            this.lbl_to_website.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
-            this.lbl_to_website.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_to_website.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.lbl_to_website.Location = new System.Drawing.Point(1137, 491);
-            this.lbl_to_website.Name = "lbl_to_website";
-            this.lbl_to_website.Size = new System.Drawing.Size(183, 38);
-            this.lbl_to_website.TabIndex = 5;
-            this.lbl_to_website.TabStop = true;
-            this.lbl_to_website.Text = "点我跳转至招生网";
-            this.lbl_to_website.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.lbl_to_website.Click += new System.EventHandler(this.lbl_to_website_Click);
-            // 
-            // btn_export_data
-            // 
-            this.btn_export_data.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_export_data.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_export_data.Location = new System.Drawing.Point(888, 491);
-            this.btn_export_data.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_export_data.Name = "btn_export_data";
-            this.btn_export_data.Size = new System.Drawing.Size(133, 35);
-            this.btn_export_data.TabIndex = 9;
-            this.btn_export_data.Text = "导出现有数据";
-            this.btn_export_data.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_export_data.Click += new System.EventHandler(this.btn_export_data_Click);
-            // 
-            // btn_import
-            // 
-            this.btn_import.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_import.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_import.Location = new System.Drawing.Point(764, 491);
-            this.btn_import.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_import.Name = "btn_import";
-            this.btn_import.Size = new System.Drawing.Size(100, 35);
-            this.btn_import.TabIndex = 8;
-            this.btn_import.Text = "批量查询";
-            this.btn_import.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
-            // 
-            // tb_account
-            // 
-            this.tb_account.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tb_account.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_account.Location = new System.Drawing.Point(4, 325);
-            this.tb_account.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tb_account.MinimumSize = new System.Drawing.Size(1, 16);
-            this.tb_account.Multiline = true;
-            this.tb_account.Name = "tb_account";
-            this.tb_account.ShowText = false;
-            this.tb_account.Size = new System.Drawing.Size(753, 199);
-            this.tb_account.TabIndex = 7;
-            this.tb_account.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tb_account.Watermark = "";
-            // 
             // dgv_column_index
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgv_column_index.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgv_column_index.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_column_index.HeaderText = "序号";
             this.dgv_column_index.MinimumWidth = 6;
             this.dgv_column_index.Name = "dgv_column_index";
@@ -232,8 +179,8 @@
             // 
             // ch_column_account
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ch_column_account.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ch_column_account.DefaultCellStyle = dataGridViewCellStyle4;
             this.ch_column_account.HeaderText = "账户信息";
             this.ch_column_account.MinimumWidth = 6;
             this.ch_column_account.Name = "ch_column_account";
@@ -242,8 +189,8 @@
             // 
             // ch_column_name
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ch_column_name.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ch_column_name.DefaultCellStyle = dataGridViewCellStyle5;
             this.ch_column_name.HeaderText = "考生姓名";
             this.ch_column_name.MinimumWidth = 6;
             this.ch_column_name.Name = "ch_column_name";
@@ -476,13 +423,68 @@
             // 
             // dgv_column_status
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgv_column_status.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgv_column_status.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_column_status.HeaderText = "状态";
             this.dgv_column_status.MinimumWidth = 6;
             this.dgv_column_status.Name = "dgv_column_status";
             this.dgv_column_status.ReadOnly = true;
             this.dgv_column_status.Width = 290;
+            // 
+            // lbl_to_website
+            // 
+            this.lbl_to_website.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(155)))), ((int)(((byte)(40)))));
+            this.lbl_to_website.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_to_website.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.lbl_to_website.Location = new System.Drawing.Point(1137, 491);
+            this.lbl_to_website.Name = "lbl_to_website";
+            this.lbl_to_website.Size = new System.Drawing.Size(183, 38);
+            this.lbl_to_website.TabIndex = 5;
+            this.lbl_to_website.TabStop = true;
+            this.lbl_to_website.Text = "点我跳转至招生网";
+            this.lbl_to_website.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lbl_to_website.Click += new System.EventHandler(this.lbl_to_website_Click);
+            // 
+            // btn_export_data
+            // 
+            this.btn_export_data.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_export_data.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_export_data.Location = new System.Drawing.Point(888, 491);
+            this.btn_export_data.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_export_data.Name = "btn_export_data";
+            this.btn_export_data.Size = new System.Drawing.Size(133, 35);
+            this.btn_export_data.TabIndex = 9;
+            this.btn_export_data.Text = "导出现有数据";
+            this.btn_export_data.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_export_data.Click += new System.EventHandler(this.btn_export_data_Click);
+            // 
+            // btn_import
+            // 
+            this.btn_import.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_import.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_import.Location = new System.Drawing.Point(764, 491);
+            this.btn_import.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_import.Name = "btn_import";
+            this.btn_import.Size = new System.Drawing.Size(100, 35);
+            this.btn_import.TabIndex = 8;
+            this.btn_import.Text = "批量查询";
+            this.btn_import.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
+            // 
+            // tb_account
+            // 
+            this.tb_account.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_account.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_account.Location = new System.Drawing.Point(4, 325);
+            this.tb_account.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_account.MinimumSize = new System.Drawing.Size(1, 16);
+            this.tb_account.Multiline = true;
+            this.tb_account.Name = "tb_account";
+            this.tb_account.ShowText = false;
+            this.tb_account.Size = new System.Drawing.Size(753, 199);
+            this.tb_account.TabIndex = 7;
+            this.tb_account.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tb_account.Watermark = "";
             // 
             // FrmAllInfo
             // 

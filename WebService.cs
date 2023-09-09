@@ -136,6 +136,8 @@ namespace ShanxiAdultEducationBatchQueryScore
                 .WithHeader("User-Agent",
                     NetContext.UserAgent).SetQueryParam("number", "0.06261674744304668")
                 .GetStringAsync();
+            var doc = new HtmlDocument();
+            doc.LoadHtml(response);
             // 姓名
             var regex = new Regex("姓名</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
             var matches = regex.Matches(response);
@@ -185,9 +187,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["毕业日期"] = matches[0].Groups[1].Value;
             // 毕业证书编号
-            regex = new Regex("<td align=\"center\">国民教育系列的专科及以上毕业证书编号</td>\r\n\t\t\t<td colspan=\"3\">(.*?)\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t<span style=\"color: red\"> \r\n\t\t\t\r\n\t\t\t\\((.*?)\\)\r\n\t\t\t</span>");
-            matches = regex.Matches(response);
-            dic["毕业证书编号"] = matches[0].Groups[1].Value + matches[0].Groups[2].Value;
+            dic["毕业证书编号"] = doc.DocumentNode.SelectSingleNode("//table[1]/tr[7]/td[2]").InnerText;
             // 工作单位位置
             regex = new Regex("<td align=\"center\">工作单位所在市、县（市、区）</td>\r\n\t\t\t<td><select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select> <select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select></td>");
             matches = regex.Matches(response);
@@ -229,10 +229,6 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["考试所在市"] = matches[0].Groups[1].Value;
             // 志愿信息
-            // regex = new Regex("<td align=\"center\">专业名称</td>\r\n\t\t</tr>\r\n\t\t \r\n\t\t<tr>(.*?)</tr>\r\n\t\t\r\n\t\t  \r\n\t\t\r\n\t</table>",RegexOptions.Multiline);
-            // matches = regex.Matches(response);
-            var doc = new HtmlDocument();
-            doc.LoadHtml(response);
             var result = doc.DocumentNode.SelectNodes("//table[2]/tr");
             dic["志愿信息"] = "";
             if (result.Count > 1)
@@ -240,8 +236,6 @@ namespace ShanxiAdultEducationBatchQueryScore
                 dic["志愿信息"] = string.Join("  |  ", result.Skip(1)
                     .Select(i => i.SelectNodes("td").Select(j => j.InnerText))
                     .Select(i => string.Join("-", i)).ToList());
-
-
             }
             // 审核状态
             regex = new Regex("<td align=\"center\">审核状态：</td>\r\n\t<td> \r\n\t <span style=\"font-size: 20px;color: red;\"> (.*?) </span>");
