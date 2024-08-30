@@ -27,7 +27,7 @@ namespace ShanxiAdultEducationBatchQueryScore
         public static async Task<CookieJar> AccountLogin(string username, string password)
         {
             // 1.获取基础Cookies
-            await "https://gkpt.sxkszx.cn/Ck-student-web/"
+            await "https://ck.sxkszx.cn:5443/Ck-student-web/#"
                 .WithCookies(out var cookies)
                 .WithHeader("User-Agent", NetContext.UserAgent)
                 .GetAsync();
@@ -36,18 +36,18 @@ namespace ShanxiAdultEducationBatchQueryScore
             while (retryCount > 0)
             {
                 // 2.根据上一步的Cookies获取验证码
-                var codeBytes = await "https://xysp.sxkszx.cn/Ck-student-web/code.do"
+                var codeBytes = await "https://ck.sxkszx.cn:5443/Ck-student-web/code.do"
                     .WithCookies(cookies)
                     .WithHeader("User-Agent", NetContext.UserAgent)
                     .GetBytesAsync();
                 // 3.图形识别接口调用
-                var codeRequest = await "http://121.37.181.45:9898/ocr/file".PostMultipartAsync(mp =>
+                var codeRequest = await "http://captcha.lisok.cn/ocr/file".PostMultipartAsync(mp =>
                     mp.AddFile("image", new MemoryStream(codeBytes), "code"));
                 var code = await codeRequest.GetStringAsync();
 
                 // 4.提交登录请求
-                var request = await "https://xysp.sxkszx.cn/Ck-student-web/login_login".WithCookies(cookies)
-                    .WithHeader("Referer", "https://xysp.sxkszx.cn/Ck-student-web/")
+                var request = await "https://ck.sxkszx.cn:5443/Ck-student-web/login_login".WithCookies(cookies)
+                    .WithHeader("Referer", "https://ck.sxkszx.cn:5443/Ck-student-web/")
                     .WithHeader("Content-Type", NetContext.ContentTypeUrlEncoded)
                     .WithHeader("User-Agent", NetContext.UserAgent)
                     .PostUrlEncodedAsync(new
@@ -90,7 +90,7 @@ namespace ShanxiAdultEducationBatchQueryScore
         public static async Task<Dictionary<string, string>> QueryScore(CookieJar cookies)
         {
             var dic = new Dictionary<string, string>();
-            var response = await "https://gkpt.sxkszx.cn/Ck-student-web/stuInfo/scoreSel"
+            var response = await "https://ck.sxkszx.cn:5443/Ck-student-web/stuInfo/scoreSel"
                 .WithCookies(cookies)
                 .WithHeader("User-Agent",
                     NetContext.UserAgent)
@@ -131,7 +131,7 @@ namespace ShanxiAdultEducationBatchQueryScore
         public static async Task<Dictionary<string, string>> GetAllInfo(CookieJar cookies)
         {
             var dic = new Dictionary<string, string>();
-            var response = await "https://xysp.sxkszx.cn/Ck-student-web/zyck/to_zyck"
+            var response = await "https://ck.sxkszx.cn:5443/Ck-student-web/zyck/to_zyck"
                 .WithCookies(cookies)
                 .WithHeader("User-Agent",
                     NetContext.UserAgent).SetQueryParam("number", "0.06261674744304668")
@@ -250,7 +250,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["录入姓名和身份证姓名一致"] = matches[0].Groups[1].Value;
             // 身份证签发
-            regex = new Regex("身份证签发机关与所选户口（居住证）所在区县是否一致：</td>\r\n\t<td>\r\n\t\r\n\t <span style=\"font-size: 20px;color: green;\">(.*?)</span>\r\n");
+            regex = new Regex(@"身份证签发机关与所选户口（居住证）所在区县是否一致：</td>\s+<td>\s+<span style=""font-size: 20px;color: .*;"">(.*?)</span>");
             matches = regex.Matches(response);
             dic["身份证签发机与户口所在区县一致"] = matches[0].Groups[1].Value;
             // 缴费状态

@@ -26,7 +26,7 @@ namespace ShanxiAdultEducationBatchQueryScore
         private void lbl_to_website_Click(object sender, EventArgs e)
         {
             // 自动打开链接
-            System.Diagnostics.Process.Start("https://xysp.sxkszx.cn/Ck-student-web/#");
+            System.Diagnostics.Process.Start("https://ck.sxkszx.cn:5443/Ck-student-web/#");
         }
 
         private async void btn_import_Click(object sender, EventArgs e)
@@ -39,6 +39,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             }
             dgv_records.Rows.Clear();
             var lines = tb_account.Lines;
+            this.ShowProcessForm();
             foreach (var line in lines)
             {
                 var account = Regex.Split(line, @"\s+");
@@ -64,6 +65,7 @@ namespace ShanxiAdultEducationBatchQueryScore
                     MessageBox.Show(exception.Message);
                 }
             }
+            this.HideProcessForm();
         }
 
         private void btn_export_data_Click(object sender, EventArgs e)
