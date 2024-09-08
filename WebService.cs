@@ -139,93 +139,93 @@ namespace ShanxiAdultEducationBatchQueryScore
             var doc = new HtmlDocument();
             doc.LoadHtml(response);
             // 姓名
-            var regex = new Regex("姓名</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            var regex = new Regex(@"姓名</td>\s+<td>(.*?)</td>\s+");
             var matches = regex.Matches(response);
             dic["考生姓名"] = matches[0].Groups[1].Value;
             // 性别
-            regex = new Regex("<td align=\"center\">性别</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">性别</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["性别"] = matches[0].Groups[1].Value;
             // 出生日期
-            regex = new Regex("<td align=\"center\">出生日期</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">出生日期</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["出生日期"] = matches[0].Groups[1].Value;
             // 民族
-            regex = new Regex("<td align=\"center\">民族</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">民族</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["民族"] = matches[0].Groups[1].Value;
             // 政治面貌
-            regex = new Regex("<td align=\"center\">政治面貌</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">政治面貌</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["政治面貌"] = matches[0].Groups[1].Value;
             // 文化程度
-            regex = new Regex("<td align=\"center\">文化程度</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">文化程度</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["文化程度"] = matches[0].Groups[1].Value;
             // 证件类型
-            regex = new Regex("<td align=\"center\">证件类型</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">证件类型</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["证件类型"] = matches[0].Groups[1].Value;
             // 证件号码
-            regex = new Regex("<td align=\"center\">证件号码</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">证件号码</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["证件号码"] = matches[0].Groups[1].Value;
             // 职业类别
-            regex = new Regex("<td align=\"center\">职业类别</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">职业类别</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["职业类别"] = matches[0].Groups[1].Value;
             // 外语语种
-            regex = new Regex("<td align=\"center\">外语语种</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">外语语种</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["外语语种"] = matches[0].Groups[1].Value;
             // 毕业学校
-            regex = new Regex("<td align=\"center\">毕业学校</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">毕业学校</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["毕业学校"] = matches[0].Groups[1].Value;
             // 毕业日期
-            regex = new Regex("<td align=\"center\">毕业日期</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">毕业日期</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["毕业日期"] = matches[0].Groups[1].Value;
             // 毕业证书编号
             dic["毕业证书编号"] = doc.DocumentNode.SelectSingleNode("//table[1]/tr[7]/td[2]").InnerText;
             // 工作单位位置
-            regex = new Regex("<td align=\"center\">工作单位所在市、县（市、区）</td>\r\n\t\t\t<td><select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select> <select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select></td>");
+            regex = new Regex(@"<td align=""center"">工作单位所在市、县（市、区）</td>\s+<td><select disabled=""disabled"">\s+<option selected=""selected"">(.*?)</option>\s+</select> <select disabled=""disabled"">\s+<option selected=""selected"">(.*?)</option>\s+</select></td>");
             matches = regex.Matches(response);
             dic["工作单位位置"] = matches[0].Groups[1].Value + "-" + matches[0].Groups[2].Value;
             // 参加工作日期
-            regex = new Regex("<td align=\"center\">参加工作日期</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">参加工作日期</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["参加工作日期"] = matches[0].Groups[1].Value;
             // 通知书邮寄地址
-            regex = new Regex("<td align=\"center\">录取通知书邮寄地址</td>\r\n\t\t\t<td colspan=\"3\">(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">录取通知书邮寄地址</td>\s+<td colspan=""3"">(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["通知书邮寄地址"] = matches[0].Groups[1].Value;
             // 邮政编码
-            regex = new Regex("<td align=\"center\">邮政编码</td>\r\n\t\t\t<td>(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"">邮政编码</td>\s+<td>(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["邮政编码"] = matches[0].Groups[1].Value;
             // 电话
-            regex = new Regex("<td align=\"center\">联系电话</td>\r\n\t\t\t<td>(.*?)</td>");
+            regex = new Regex(@"<td align=""center"">联系电话</td>\s+<td>(.*?)</td>");
             matches = regex.Matches(response);
             dic["电话"] = matches[0].Groups[1].Value;
             // 报考类型
-            regex = new Regex("<td align=\"center\">报考类型</td>\r\n\t\t\t<td>(.*?)</td>\r\n\t\t\t<td align=\"center\">报考科类</td>\r\n\t\t\t<td>(.*?)</td>");
+            regex = new Regex(@"<td align=""center"">报考类型</td>\s+<td>(.*?)</td>\s+<td align=""center"">报考科类</td>\s+<td>(.*?)</td>");
             matches = regex.Matches(response);
             dic["报考类型"] = matches[0].Groups[1].Value + "-" + matches[0].Groups[2].Value;
             // 户口所在地市
-            regex = new Regex("<td align=\"center\">户口（工作或居住）所在市</td>\r\n\t\t\t<td><select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select></td>\r\n\t\t\t<td align=\"center\">户口（工作或居住）所在县（市、区）</td>\r\n\t\t\t<td><select disabled=\"disabled\">\r\n\t\t\t\t\t<option selected=\"selected\">(.*?)</option>\r\n\t\t\t</select></td");
+            regex = new Regex(@"<td align=""center"">户口（工作或居住）所在市</td>\s+<td><select disabled=""disabled"">\s+<option selected=""selected"">(.*?)</option>\s+</select></td>\s+<td align=""center"">户口（工作或居住）所在县（市、区）</td>\s+<td><select disabled=""disabled"">\s+<option selected=""selected"">(.*?)</option>\s+</select></td");
             matches = regex.Matches(response);
             dic["户口所在地市-县(市、区)"] = matches[0].Groups[1].Value + "-" + matches[0].Groups[2].Value;
             // 考生类型
-            regex = new Regex("<td align=\"center\" style=\"color: red;\">考生类型:</td>\r\n\t\t\t<td colspan=\"3\">(.*?)</td>\r\n");
+            regex = new Regex(@"<td align=""center"" style=""color: red;"">考生类型:</td>\s+<td colspan=""3"">(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["考生类型"] = matches[0].Groups[1].Value;
             // 现场审核信息
-            regex = new Regex("<tr>\r\n\t\t\t<td align=\"center\">现场审核点</td>\r\n\t\t\t<td>(.*?)</td>\r\n\t\t\t<td align=\"center\">现场审核点联系电话</td>\r\n\t\t\t<td>(.*?)</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td align=\"center\">现场审核点地址</td>\r\n\t\t\t<td colspan=\"3\">(.*?)</td>\r\n\t\t</tr>\r\n");
+            regex = new Regex(@"<tr>\s+<td align=""center"">现场审核点</td>\s+<td>(.*?)</td>\s+<td align=""center"">现场审核点联系电话</td>\s+<td>(.*?)</td>\s+</tr>\s+<tr>\s+<td align=""center"">现场审核点地址</td>\s+<td colspan=""3"">(.*?)</td>\s+</tr>\s+");
             matches = regex.Matches(response);
             dic["现场审核信息"] = matches[0].Groups[1].Value + "-" + matches[0].Groups[2].Value + "-" + matches[0].Groups[3].Value;
             // 考试所在市
-            regex = new Regex("<td align=\"center\">考试所在市</td>\r\n\t\t\t<td colspan=\"3\"><span style=\"color: blue; font-size: 20px\">(.*?)</span>\r\n\t\t\t</td>\r\n");
+            regex = new Regex(@"<td align=""center"">考试所在市</td>\s+<td colspan=""3""><span style=""color: blue; font-size: 20px"">(.*?)</span>\s+</td>\s+");
             matches = regex.Matches(response);
             dic["考试所在市"] = matches[0].Groups[1].Value;
             // 志愿信息
@@ -242,11 +242,11 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["审核状态"] = matches[0].Groups[1].Value;
             // 照片
-            regex = new Regex("<td align=\"center\">身份证照片、证件照、手持身份证照片比对是否为同一个人：</td>\r\n\t<td>\r\n\t\r\n\t <span style=\"font-size: 20px;color: green;\">(.*?)</span>\r\n");
+            regex = new Regex(@"<td align=""center"">身份证照片、证件照、手持身份证照片比对是否为同一个人：</td>\s+<td>\s+<span style=""font-size: 20px;color: green;"">(.*?)</span>\s+");
             matches = regex.Matches(response);
             dic["三照片是否为同一人"] = matches[0].Groups[1].Value;
             // 录入姓名
-            regex = new Regex("<td align=\"center\">录入的姓名与身份证识别到的姓名是否一致：</td>\r\n\t<td>\r\n\t\r\n\t <span style=\"font-size: 20px;color: green;\">(.*?)</span>\r\n");
+            regex = new Regex(@"<td align=""center"">录入的姓名与身份证识别到的姓名是否一致：</td>\s+<td>\s+<span style=""font-size: 20px;color: green;"">(.*?)</span>\s+");
             matches = regex.Matches(response);
             dic["录入姓名和身份证姓名一致"] = matches[0].Groups[1].Value;
             // 身份证签发
@@ -254,7 +254,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["身份证签发机与户口所在区县一致"] = matches[0].Groups[1].Value;
             // 缴费状态
-            regex = new Regex("缴费状态：</td>\r\n\t<td>\r\n\t <span style=\"font-size: 20px;color: red;\">(.*?)</span>\r\n");
+            regex = new Regex(@"缴费状态：</td>\s+<td>\s+<span style=""font-size: 20px;color:.*?;"">(.*?)</span>\s+");
             matches = regex.Matches(response);
             dic["缴费状态"] = matches[0].Groups[1].Value;
 
