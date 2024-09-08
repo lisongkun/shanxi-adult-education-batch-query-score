@@ -238,7 +238,7 @@ namespace ShanxiAdultEducationBatchQueryScore
                     .Select(i => string.Join("-", i)).ToList());
             }
             // 审核状态
-            regex = new Regex("<td align=\"center\">审核状态：</td>\r\n\t<td> \r\n\t <span style=\"font-size: 20px;color: red;\"> (.*?) </span>");
+            regex = new Regex(@"<td align=""center"">审核状态：</td>\s+<td> \s+<span style=""font-size: 20px;color: .*?;"">\s+(.*?)\s+</span>");
             matches = regex.Matches(response);
             dic["审核状态"] = matches[0].Groups[1].Value;
             // 照片
