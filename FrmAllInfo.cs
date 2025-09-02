@@ -42,8 +42,12 @@ namespace ShanxiAdultEducationBatchQueryScore
             this.ShowProcessForm();
             foreach (var line in lines)
             {
-                var account = Regex.Split(line, @"\s+");
-                if (account.Length != 2) continue;
+                var account = Regex.Split(line.Trim(), @"\s+");
+                if (account.Length != 2)
+                {
+                    this.HideProcessForm();
+                    continue;
+                }
                 Dictionary<string, string> info;
                 try
                 {

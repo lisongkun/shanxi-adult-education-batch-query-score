@@ -8,7 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using ShanxiAdultEducationBatchQueryScore.Helper;
 using Sunny.UI;
+using System.Security.Cryptography;
+using System.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ShanxiAdultEducationBatchQueryScore
 {
@@ -45,15 +49,24 @@ namespace ShanxiAdultEducationBatchQueryScore
                     mp.AddFile("image", new MemoryStream(codeBytes), "code"));
                 var code = await codeRequest.GetStringAsync();
 
+                // 4. 获取 PublicKey
+                var publicKeyRequest = await "https://ck.sxkszx.cn:5443/Ck-student-web/getPublicKey".WithCookies(cookies)
+                    .WithHeader("User-Agent", NetContext.UserAgent)
+                    .GetStringAsync();
+                var publicKey = JsonConvert.DeserializeObject<PublicKeyVo>(publicKeyRequest);
+                var publicKeyValue = publicKey.publicKey;
+                var xmlPublicKey = RSAHelper.RSAPublicKey(publicKeyValue);
                 // 4.提交登录请求
+                var encryptedUsername = RSAHelper.RSAEncrypt(xmlPublicKey, username);
+                var encryptedPassword = RSAHelper.RSAEncrypt(xmlPublicKey, password);
                 var request = await "https://ck.sxkszx.cn:5443/Ck-student-web/login_login".WithCookies(cookies)
                     .WithHeader("Referer", "https://ck.sxkszx.cn:5443/Ck-student-web/")
                     .WithHeader("Content-Type", NetContext.ContentTypeUrlEncoded)
                     .WithHeader("User-Agent", NetContext.UserAgent)
                     .PostUrlEncodedAsync(new
                     {
-                        username,
-                        password,
+                        username = encryptedUsername,
+                        password = encryptedPassword,
                         checkCode = code,
                         sbxx = "Win32"
                     });
@@ -242,7 +255,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["审核状态"] = matches[0].Groups[1].Value;
             // 照片
-            regex = new Regex(@"<td align=""center"">身份证照片、证件照、手持身份证照片比对是否为同一个人：</td>\s+<td>\s+<span style=""font-size: 20px;color: green;"">(.*?)</span>\s+");
+            regex = new Regex(@"<td align=""center"">身份证照片、证件照、手持身份证照片比对是否为同一个人：</td>\s+<td>\s+<span style=""font-size: 20px;color:.*?;"".*>(.*?)</span>\s+");
             matches = regex.Matches(response);
             dic["三照片是否为同一人"] = matches[0].Groups[1].Value;
             // 录入姓名
