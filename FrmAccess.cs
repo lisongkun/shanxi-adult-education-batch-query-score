@@ -32,6 +32,18 @@ namespace ShanxiAdultEducationBatchQueryScore
                     Hide();
                     frmAllInfo.FormClosed += (o, args) => Close();
                     break;
+                case 2:
+                    var frmAdmission = new FrmAdmission();
+                    frmAdmission.Show();
+                    Hide();
+                    frmAdmission.FormClosed += (o, args) => Close();
+                    break;
+                // case 3:
+                //     var frmBatchDownloadAdmissionTicket = new FrmBatchDownloadAdmissionTicket();
+                //     frmBatchDownloadAdmissionTicket.Show();
+                //     Hide();
+                //     frmBatchDownloadAdmissionTicket.FormClosed += (o, args) => Close();
+                //     break;
                 default:
                     ShowErrorTip("请选择要进入的窗口!");
                     break;

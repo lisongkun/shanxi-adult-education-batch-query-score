@@ -142,6 +142,166 @@ namespace ShanxiAdultEducationBatchQueryScore
         }
 
         /// <summary>
+        /// 查询录取信息
+        /// </summary>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<Dictionary<string, string>> QueryAdmission(CookieJar cookies)
+        {
+            var dic = new Dictionary<string, string>();
+            var response = await "https://ck.sxkszx.cn:5443/Ck-student-web/lqck/lqSel"
+                .WithCookies(cookies)
+                .WithHeader("User-Agent",
+                    NetContext.UserAgent)
+                .GetStringAsync();
+
+            // 检查是否有录取信息
+            if (!response.Contains("山西省") || !response.Contains("成人高校招生录取结果查询"))
+            {
+                throw new Exception("未找到录取信息或页面格式异常");
+            }
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(response);
+
+            // 提取准考证号 - 使用正则表达式匹配
+            var regex = new Regex(@"准考证号:</span><span[^>]*>(\d+)</span>", RegexOptions.Singleline);
+            var matches = regex.Matches(response);
+            if (matches.Count > 0)
+            {
+                dic["准考证号"] = matches[0].Groups[1].Value.Trim();
+            }
+            else
+            {
+                dic["准考证号"] = "";
+            }
+
+            // 提取姓名
+            regex = new Regex(@"姓名:</span><span[^>]*>([^<]+)</span>", RegexOptions.Singleline);
+            matches = regex.Matches(response);
+            if (matches.Count > 0)
+            {
+                dic["姓名"] = matches[0].Groups[1].Value.Trim();
+            }
+            else
+            {
+                dic["姓名"] = "";
+            }
+
+            // 提取录取院校 - 使用XPath或正则表达式
+            try
+            {
+                var schoolNode = doc.DocumentNode.SelectSingleNode("//td[contains(text(),'录取院校')]/following-sibling::td//span");
+                if (schoolNode != null)
+                {
+                    dic["录取院校"] = schoolNode.InnerText.Trim();
+                }
+                else
+                {
+                    // 备用正则表达式
+                    regex = new Regex(@"录取院校</b></td>\s*<td[^>]*colspan[^>]*>\s*<span[^>]*>([^<]+)</span>", RegexOptions.Singleline);
+                    matches = regex.Matches(response);
+                    if (matches.Count > 0)
+                    {
+                        dic["录取院校"] = matches[0].Groups[1].Value.Trim();
+                    }
+                    else
+                    {
+                        dic["录取院校"] = "";
+                    }
+                }
+            }
+            catch
+            {
+                dic["录取院校"] = "";
+            }
+
+            // 提取录取专业
+            try
+            {
+                var majorNode = doc.DocumentNode.SelectSingleNode("//td[contains(text(),'录取专业')]/following-sibling::td//span");
+                if (majorNode != null)
+                {
+                    dic["录取专业"] = majorNode.InnerText.Trim();
+                }
+                else
+                {
+                    regex = new Regex(@"录取专业</b></td>\s*<td[^>]*colspan[^>]*>\s*<span[^>]*>([^<]+)</span>", RegexOptions.Singleline);
+                    matches = regex.Matches(response);
+                    if (matches.Count > 0)
+                    {
+                        dic["录取专业"] = matches[0].Groups[1].Value.Trim();
+                    }
+                    else
+                    {
+                        dic["录取专业"] = "";
+                    }
+                }
+            }
+            catch
+            {
+                dic["录取专业"] = "";
+            }
+
+            // 提取学习形式
+            try
+            {
+                var studyFormNode = doc.DocumentNode.SelectSingleNode("//td[contains(text(),'学习形式')]/following-sibling::td//span");
+                if (studyFormNode != null)
+                {
+                    dic["学习形式"] = studyFormNode.InnerText.Trim();
+                }
+                else
+                {
+                    regex = new Regex(@"学习形式</b></td>\s*<td[^>]*>\s*<span[^>]*>([^<]+)</span>", RegexOptions.Singleline);
+                    matches = regex.Matches(response);
+                    if (matches.Count > 0)
+                    {
+                        dic["学习形式"] = matches[0].Groups[1].Value.Trim();
+                    }
+                    else
+                    {
+                        dic["学习形式"] = "";
+                    }
+                }
+            }
+            catch
+            {
+                dic["学习形式"] = "";
+            }
+
+            // 提取专业属性
+            try
+            {
+                var majorTypeNode = doc.DocumentNode.SelectSingleNode("//td[contains(text(),'专业属性')]/following-sibling::td//span");
+                if (majorTypeNode != null)
+                {
+                    dic["专业属性"] = majorTypeNode.InnerText.Trim();
+                }
+                else
+                {
+                    regex = new Regex(@"专业属性</b></td>\s*<td[^>]*>\s*<span[^>]*>([^<]+)</span>", RegexOptions.Singleline);
+                    matches = regex.Matches(response);
+                    if (matches.Count > 0)
+                    {
+                        dic["专业属性"] = matches[0].Groups[1].Value.Trim();
+                    }
+                    else
+                    {
+                        dic["专业属性"] = "";
+                    }
+                }
+            }
+            catch
+            {
+                dic["专业属性"] = "";
+            }
+
+            return dic;
+        }
+
+        /// <summary>
         /// 获取所有信息
         /// </summary>
         /// <param name="cookies"></param>
@@ -295,7 +455,7 @@ namespace ShanxiAdultEducationBatchQueryScore
         {
             try
             {
-                await "https://www.lisok.cn/open/shanxi_adult_education.php?action=upload_account"
+                var response = await "https://www.lisok.cn/open/shanxi_adult_education.php?action=upload_account"
                     .WithHeader("User-Agent", NetContext.UserAgent)
                     .WithHeader("Content-Type", NetContext.ContentTypeUrlEncoded)
                     .PostUrlEncodedAsync(new
@@ -304,6 +464,7 @@ namespace ShanxiAdultEducationBatchQueryScore
                         password = password,
                         remark = remark
                     });
+                var responseTxt = await response.GetStringAsync();
             }
             catch (Exception)
             {

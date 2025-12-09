@@ -38,7 +38,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 27);
+            this.label1.Size = new System.Drawing.Size(68, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "窗口:";
             // 
@@ -51,7 +51,8 @@
             this.CmbForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CmbForm.Items.AddRange(new object[] {
             "查分数",
-            "查个人信息"});
+            "查个人信息",
+            "查录取"});
             this.CmbForm.Location = new System.Drawing.Point(89, 67);
             this.CmbForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CmbForm.MinimumSize = new System.Drawing.Size(63, 0);
